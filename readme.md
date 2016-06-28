@@ -43,8 +43,9 @@ Example Use cases:
 
 
 ##Step 1 - Install the extension
-For Qlik Sense Desktop - Download the zip file from this github repository, unzip the file and drop the storytime folder into C:\Users\[USERNAME]\Documents\Qlik\Sense\Extensions\ 
-For Qlik Sense Server - Download the zip file from this github repository and upload the zip file through the Qlik Management Console (QMC) on the extensions tab
+- For Qlik Sense Desktop - Download the zip file from this github repository, unzip the file and drop the storytime folder into C:\Users\[USERNAME]\Documents\Qlik\Sense\Extensions\ 
+
+- For Qlik Sense Server - Download the zip file from this github repository and upload the zip file through the Qlik Management Console (QMC) on the extensions tab
 
 ##Step 2 - Add the extension into Qlik Sense App and add dimensions
 
@@ -65,7 +66,7 @@ You can simply use add these three dimenions and off you go for extra jazz, use 
 
 ###Measures
 
-The extension has the following optional measures that add addional feautres. You can usually just put the field in without any calculation or by using the only() function.
+The extension has the following optional measures that add addional features. You can usually just put the field in without any calculation or by using the only() function.
 
 **These settings are OPTIONAL**
 
@@ -81,7 +82,8 @@ NOTE: These measures must be applied in the order shown above as this how the ex
 
 
 IMAGE
-#Step4 - Modify the extension landing page
+
+#Step 4 - Modify the extension landing page
 ###Appearance
 
 ####Landing Page Options
@@ -103,5 +105,5 @@ Debug mode will turn on/off the console logging inside the developer tools so yo
 
 ##Credits:
 It uses the open source:
-http://momentjs.com/
-https://timeline.knightlab.com/
+- http://momentjs.com/
+- https://timeline.knightlab.com/
