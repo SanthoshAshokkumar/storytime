@@ -40,13 +40,19 @@ Example Use cases:
 ##Prerequisites
 - Qlik Sense 2.1 or higher
 
-##Required Settings
 
-###Quick Start
 
-The extension requires three dimensions, these are:
+##Step 1 - Install the extension
+For Qlik Sense Desktop - Download the zip file from this github repository, unzip the file and drop the storytime folder into C:\Users\[USERNAME]\Documents\Qlik\Sense\Extensions\ 
+For Qlik Sense Server - Download the zip file from this github repository and upload the zip file through the Qlik Management Console (QMC) on the extensions tab
 
-####Dimensions
+##Step 2 - Add the extension into Qlik Sense App and add dimensions
+
+Open the app you want a timeline in and drag drop the 'storytime' extension.
+
+The extension requires three dimensions and has optional measures.
+
+###Dimensions
 1. *An Event Name* - **Required**
 2. *Event Start Date* - **Required** - This can be any formatted Date
 3. *Event End Date* - **Required** - This can be any formatted Date
@@ -55,13 +61,13 @@ NOTE: Event start and end date could be the same thing if you don't have an end 
 
 You can simply use add these three dimenions and off you go for extra jazz, use some of the optional settings.
 
-##Optional Settings
+##Step 3 - Add optional measures
 
-####Measures
+###Measures
 
-The extension has the following optional measures. Each of these corresponds to the event dimensions above. You can usually just put the field in without any calculation or by using the only() function.
+The extension has the following optional measures that add addional feautres. You can usually just put the field in without any calculation or by using the only() function.
 
-**These settings are OPTIONAL**. However, if you want to use 'Event Group' but you do not have values for all the prior measures then put in blank measures with ='' to make it work.
+**These settings are OPTIONAL**
 
 1. *Text Description* - This is the text description that will show up under the Event Name in the timeline.
 2. *Event Media url* - This is the media URL
@@ -71,12 +77,14 @@ The extension has the following optional measures. Each of these corresponds to 
 6. *Event group*
 7. *Event background* - This can be either a hex color value, e.g. #333333 or a URL to an image.
 
-These measures need to be applied in the corresponding order:
+NOTE: These measures must be applied in the order shown above as this how the extension understands what they are. If you want to use 'Event Group' but you do not have values for all the prior measures then put in blank measures with ='' to make sure there are the correct number of measures.
+
+
 IMAGE
+#Step4 - Modify the extension landing page
+###Appearance
 
-####Appearance
-
-#####Landing Page Options
+####Landing Page Options
 
 
 These options let you customise the landing page. The landing page is the first view of the extension when the page is loaded or a selection is made.
@@ -88,7 +96,7 @@ These options let you customise the landing page. The landing page is the first 
 5. *Landing Text Description* - **Optional** - This appear under the landing headline or to the right of the media if media is present. Recommended
 
 
-###Debug Mode
+##Debug Mode
 
 Debug mode will turn on/off the console logging inside the developer tools so you can see whats going on.
 
