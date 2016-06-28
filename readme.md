@@ -2,20 +2,33 @@
 
 Control Sense using your Voice! Great for accessibility and funky demos
 
-See full description and details at http://www.webofwork.com/qlik-sense-voice-control-extension-for-accessibility
-
+See full description and details at http://www.webofwork.com/qlik-sense-story-timeline-extension
 
 Built for Qlik Sense 2.2.4>
 
 Built by Adam Cooke (http://webofwork.com/)
 
 
-
 ##About:
 
-This extension lets you create dynamic story board timelines using Qlik Sense Data. It is based on the powerful Timelinejs3 library.
+Use the powerful associative data engine of Qlik Sense with the incredible coolness of the [Timelinejs3 library](https://timeline.knightlab.com/)
 
-it lets you embed youtube videos, tweets, dropbox pdfs, wikipedia pages and text stories into a time series and is a great way to tell a story.
+Bring your stories to life
+
+This extension lets you bring story timelinejs timelines into Qlik Sense and use Qlik Sense data.
+
+
+TimelineJS is an open-source tool that enables anyone to build visually rich, interactive timelines.
+
+TimelineJS can pull in media from a variety of sources. 
+Twitter, Flickr, YouTube, Vimeo, Vine, Dailymotion, Google Maps, Wikipedia, SoundCloud, Document Cloud and more!
+
+See some [Timelinejs3 examples]https://timeline.knightlab.com/#examples)
+
+
+This extension lets you embed timelines inside Qlik Sense applications, combining two extremely powerful technologies to make something even better!:D
+
+MOVINGIMAGE
 
 Example Use cases:
 1) Project management - view the stages of the project
@@ -25,8 +38,6 @@ Example Use cases:
 5) Monitoring social media events on a timeline
 6) There are hundreds of uses! It is down to your imagination :p
 
-
-MOVINGIMAGE
 
 
 ##Prerequisites
@@ -49,7 +60,6 @@ The extension as a minimum requires three dimensions these are:
 You can simply use add these three dimenions and off you go!
 
 ##Optional Settings
-
 
 
 ###Measures
@@ -94,24 +104,6 @@ This is the heading title name on the extension
 5) Landing Text Description
 This appear under the landing headline or to the right of the media if media is present. Recommended
 
-###Switch Settings
-
-This will enable you to use the switch or just have it turned on by default when the extension is on the page
-
-###Notifications
-
-This notifies the user in the extension what action the voice control has taken. This setting disables and enables it
-
-###Selection Context Mode
-
-When doing searches currently it is using CurrentSelections as the context mode by default, this can be changed in the settings. In this mode, the current selections are kept (if any). Search for one or more terms in the values of the app. New selections are made on top of the current selections. Other options are:
-
-1. Cleared: In this mode, the first step is to clear any current selections in the app. The second step is to search for one or more terms in the values of the app.
-
-2. LockedFieldsOnly: In this mode, the search applies only to the values associated with the selections made in locked fields, ignoring selections in any unlocked field. If no locked fields, the behavior is identical to the Cleared context. You cannot make any new selections in a locked field. You can get search hits for the associated values of a locked field but you cannot get the search hits for the non associative values.
-
-3. CurrentSelections (Default): In this mode, the current selections are kept (if any). Search for one or more terms in the values of the app. New selections are made on top of the current selections. If no selections were made before the search, this mode is identical to the Cleared context.
-
 
 ###Debug Mode
 
@@ -119,9 +111,6 @@ Debug mode will turn on/off the console logging inside the developer tools so yo
 
 
 ##Credits:
-It uses the open source annyang voice recognition library.
-https://www.talater.com/annyang/
-
-###Other Contributors:
-Nick Webster
-Adeel Khaan
+It uses the open source:
+http://momentjs.com/
+https://timeline.knightlab.com/
