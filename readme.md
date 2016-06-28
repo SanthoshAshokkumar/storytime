@@ -1,6 +1,6 @@
 #Qlik Sense Story Timeline
 
-Control Sense using your Voice! Great for accessibility and funky demos
+Add interactive timelines into qlik sense.
 
 See full description and details at http://www.webofwork.com/qlik-sense-story-timeline-extension
 
