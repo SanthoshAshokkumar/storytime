@@ -1,0 +1,15 @@
+{
+	"name": "Story Time",
+	"description": "Display stories on a visual timeline",
+	"type": "visualization",
+	"version": "1.0.0",
+	"icon": "extension",
+	"author": "Adam Cooke",
+	"homepage": "",
+	"keywords": "qlik-sense, visualization",
+	"license": "MIT",
+	"repository": "",
+	"dependencies": {
+		"qlik-sense": ">=1.0.x"
+	}
+}
