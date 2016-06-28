@@ -13,10 +13,7 @@ Built by Adam Cooke (http://webofwork.com/)
 
 Use the powerful associative data engine of Qlik Sense with the incredible coolness of the [Timelinejs3 library](https://timeline.knightlab.com/)
 
-Bring your stories to life
-
 This extension lets you bring story timelinejs timelines into Qlik Sense and use Qlik Sense data.
-
 
 TimelineJS is an open-source tool that enables anyone to build visually rich, interactive timelines.
 
@@ -31,12 +28,12 @@ This extension lets you embed timelines inside Qlik Sense applications, combinin
 MOVINGIMAGE
 
 Example Use cases:
-1) Project management - view the stages of the project
-2) Customer relationship management - show interactions with your customers!
-3) Historic story boards - bring history alive
-4) Political timelines - monitor elections
-5) Monitoring social media events on a timeline
-6) There are hundreds of uses! It is down to your imagination :p
+- Project management - view the stages of the project
+- Customer relationship management - show interactions with your customers!
+- Historic story boards - bring history alive
+- Political timelines - monitor elections
+- Monitoring social media events on a timeline
+- There are hundreds of uses! It is down to your imagination :p
 
 
 
@@ -51,9 +48,10 @@ Example Use cases:
 
 The extension as a minimum requires three dimensions these are:
 
-1) An Event Name - Required
-2) Event Start Date - Required
-3) Event End Date - Required
+####Dimensions
+1. An Event Name - Required
+2. Event Start Date - Required
+3. Event End Date - Required
 
 (Event start and end date could be the same thing)
 
@@ -62,46 +60,46 @@ You can simply use add these three dimenions and off you go!
 ##Optional Settings
 
 
-###Measures
+####Measures
 
 The extension has the following optional measures. Each of these corresponds to the event dimensions above. You can usually just put the field in without any calculation or by using the only() function.
 
 These settings are OPTIONAL. However, if you want to use 'Event Group' but you do not have values for all the prior measures then put in blank measures with ='' to make it work.
 
 
-4) Text Description - This is the text description that will show up under the Event Name in the timeline.
-5) Event Media url - this is the media URL
-6) Event Media caption
-7) Event Media credit
-8) Event thumbnail
-9) Event group
-10) Event background - This can be a
+4. Text Description - This is the text description that will show up under the Event Name in the timeline.
+5. Event Media url - this is the media URL
+6. Event Media caption
+7. Event Media credit
+8. Event thumbnail
+9. Event group
+10. Event background - This can be a
 
 
 These measures need to be applied in the corresponding order:
 IMAGE
 
-###Appearance
+####Appearance
 
-####Landing Page Options
+#####Landing Page Options
 
 
 These options let you customise the landing page. The landing page is the first view of the extension when the page is loaded or a selection is made.
 
-1) Media URL - Optional
+1. Media URL - Optional
 
 This is a video or image this can be a youtube link address, dropbox pdf or an image such as png, jpg etc
 
-2) Media Caption - Optional
+2. Media Caption - Optional
 This is the caption that shows under the media item (only appears when media item is specified)
 
-3) Media Credits - Optional
+3. Media Credits - Optional
 This is credit that shows to the bottom left of the media item (only appears when media item is specified)
 
-4) Landing Headline - Optional
+4. Landing Headline - Optional
 This is the heading title name on the extension
 
-5) Landing Text Description
+5. Landing Text Description
 This appear under the landing headline or to the right of the media if media is present. Recommended
 
 
