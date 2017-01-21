@@ -1,15 +1,16 @@
 {
-	"name": "Story Time",
+	"name": "Vizlib Timeline",
 	"description": "Display stories on a visual timeline",
 	"type": "visualization",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"icon": "extension",
+	"preview": "vizlibtimeline.png",
 	"author": "Adam Cooke",
-	"homepage": "",
+	"homepage": "www.vizlib.com",
 	"keywords": "qlik-sense, visualization",
-	"license": "MIT",
+	"license": "2016-2017 © Vizlib Ltd. - All rights reserved.",
 	"repository": "",
 	"dependencies": {
-		"qlik-sense": ">=1.0.x"
+		"qlik-sense": ">=2.0.x"
 	}
 }

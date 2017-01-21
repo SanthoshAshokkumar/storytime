@@ -6,7 +6,12 @@ define([], function() {
     // Settings section
     // *****************************************************************************
     var appearanceSection = {
-        uses: "settings",
+        uses: "settings"
+    };
+
+    var timelineSection = {
+        label:"Timeline Landing Page",
+        type: "items",
         items: {
             landingpage: {
                 type: "items",
@@ -44,15 +49,45 @@ define([], function() {
                         expression: "optional"
                     }
                 }
-            },
-            debugmode: {
-                type: "boolean",
-                label: "Debug Mode",
-                ref: "DebugMode",
-                defaultValue: true
             }
         }
     };
+
+    var propertyType = {
+        type: "string",
+        component: "dropdown",
+        label: "Timeline Setting Type",
+        ref: "qDef.settingtype",
+        options: [{
+            value: "description",
+            label: "Description"
+        }, {
+            value: "background_img_color",
+            label: "Background Image or Color"
+        }, {
+            value: "background_opacity",
+            label: "Background Opacity"
+        }, {
+            value: "media_caption",
+            label: "Media Caption"
+        }, {
+            value: "media_credit",
+            label: "Media Credit"
+        },
+{
+            value: "media_thumb",
+            label: "Media Thumbnail"
+        },
+{
+            value: "media_url",
+            label: "Media URL"
+        },
+{
+            value: "grouping",
+            label: "grouping"
+        }]
+    };
+
     // *****************************************************************************
     // Main properties panel definition
     // Only what is defined here is returned from properties.js
@@ -64,20 +99,22 @@ define([], function() {
         items: {
             dimensions: {
                 uses: "dimensions",
-                min: 3,
-                max: 3
+                min: 0,
+                max: 3,
             },
             measures: {
                 uses: "measures",
                 min: 0,
-                max: 7
-                    /*
-                    	1. Measure: title text for hover popup (optional)
-                    	2. Measure: CSS class name for styling or number 1 to 10 for class color-a = "QlikSense dark blue" to color-j = "Qlik Sense dark red" (optional)
-                    	3. Measure: group name to group items in swim lanes (optional)						
-                    */
+                max: 9,
+                items: {
+                    propertyType: propertyType
+                }
             },
-            Settings: appearanceSection,
+            sorting: {
+                uses: "sorting"
+            },
+            timeline: timelineSection,
+            settings: appearanceSection,
             addons: {
                 uses: "addons",
                 items: {
