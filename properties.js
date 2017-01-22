@@ -10,7 +10,7 @@ define([], function() {
     };
 
     var timelineSection = {
-        label:"Timeline Landing Page",
+        label: "Timeline Landing Page",
         type: "items",
         items: {
             landingpage: {
@@ -73,20 +73,41 @@ define([], function() {
         }, {
             value: "media_credit",
             label: "Media Credit"
-        },
-{
+        }, {
             value: "media_thumb",
             label: "Media Thumbnail"
-        },
-{
+        }, {
             value: "media_url",
             label: "Media URL"
-        },
-{
+        }, {
             value: "grouping",
             label: "grouping"
         }]
     };
+
+    /********* About *********/
+    var sectionAbout = {
+        label: function(data) {
+            return "About " + data.extensionMeta.name
+        },
+        items: {
+            aboutsettings: {
+                ref: "aboutsettings",
+                type: "string",
+                component: {
+                    template: '<div style="width:95%; text-align: left;"><img id="aboutsection_image" style="max-width:250px;max-height:80px"></div>' +
+                        '<i><div id="aboutsection_version" style="width:95%; text-align: right; font-size:10px; margin-right:10px; color: #667dbc"></div></i>' +
+                        '<i><div id="aboutsection_email" style="width:95%; text-align: center; font-size:13px; margin-right:10px; color: #667dbc"></div></i>',
+                    controller: ["$scope", "$element", function(c, e) {
+                        $('#aboutsection_image').attr('src', '../extensions/' + c.data.extensionMeta.template + '/' + c.data.extensionMeta.preview)
+                        $('#aboutsection_image').attr('alt', c.data.extensionMeta.name)
+                        $('#aboutsection_email').html(c.data.extensionMeta.email)
+                        $('#aboutsection_version').html(c.data.extensionMeta.version)
+                    }]
+                }
+            }
+        }
+    }
 
     // *****************************************************************************
     // Main properties panel definition
@@ -123,7 +144,7 @@ define([], function() {
                     }
                 }
             },
-
+            sectionAbout: sectionAbout
         }
     }
 });

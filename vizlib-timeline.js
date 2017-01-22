@@ -23,20 +23,25 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
             definition: props,
             paint: function($element, layout) {
 
-                var helpline = '<p>Got a question? Please contact <a href="mailto:support@vizlib.com">support@vizlib.com<a></p>'
 
                 //Number of dimensions
-
+                console.log(layout);
 
                 var qData = layout.qHyperCube.qDataPages[0].qMatrix;
 
                 var numberofdimensions = layout.qHyperCube.qDimensionInfo.length;
+                
+                var helpline = '<p>Got a question? Please contact <a href="mailto:'+ layout.extensionMeta.email +'">'+ layout.extensionMeta.email +'<a></p>'
+                var dim1message ='';
+                var dim2message='';
+                var dim3message = '';
+                var errortemplate = '<h2>Lets create a Vizlib timeline!</h2><div style="width:95%; text-align: left;"><img class="vizlibtimeline_image" style="max-width:250px;max-height:80px"></div>Add up to three dimensions in this order:<p>   1) Event Date <b>Required ' + dim1message + '</b></p><p>  2) Event Name or Identifier <b>Required ' + dim2message + '</b></p><p>  3) Event End Date (Optional)  <b>' + dim3message + '</b></p>' + helpline;
 
                 if (numberofdimensions == 0) {
 
-                    var error = '<h2>Lets create a Vizlib timeline!</h2><p> </p>Add up to three dimensions in this order:<p>   1) Event Date <b>Required</b></p><p>  2) Event Name or Identifier <b>Required</b></p><p>  3) Event End Date (Optional)</p>' + helpline;
-                    $element.html(error);
-
+                    $element.html(errortemplate);
+                        $('.vizlibtimeline_image').attr('src', '../extensions/' + layout.extensionMeta.template + '/' + layout.extensionMeta.preview)
+                        $('.vizlibtimeline_image').attr('alt', layout.extensionMeta.name)
                 } else {
 
 
@@ -52,7 +57,6 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
 
                     }
 
-                    var dim2message = '';
                     //Check second dimension exists
                     if (numberofdimensions > 1) {
                         var dim2valid = true;
@@ -61,7 +65,6 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
 
                     //If third dimension exists validate it is a date
                     var dim3valid = true;
-                    var dim3message = '';
                     //Check second dimension exists
                     if (numberofdimensions == 3) {
 
@@ -116,11 +119,13 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
 
 
                     } else {
-                        var error = '<h2>Lets create a Vizlib timeline!</h2><p> </p>Add up to three dimensions in this order:<p>   1) Event Date <b>Required ' + dim1message + '</b></p><p>  2) Event Name or Identifier <b>Required ' + dim2message + '</b></p><p>  3) Event End Date (Optional)  <b>' + dim3message + '</b></p>' + helpline;
-                        $element.html(error);
+                        $element.html(errortemplate);
+                        $('.vizlibtimeline_image').attr('src', '../extensions/' + layout.extensionMeta.template + '/' + layout.extensionMeta.preview)
+                        $('.vizlibtimeline_image').attr('alt', layout.extensionMeta.name)
                     }
 
                 }
+
 
 
                 function generatetimeline($element, layout) {
