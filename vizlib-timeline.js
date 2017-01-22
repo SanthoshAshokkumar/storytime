@@ -30,18 +30,34 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                 var qData = layout.qHyperCube.qDataPages[0].qMatrix;
 
                 var numberofdimensions = layout.qHyperCube.qDimensionInfo.length;
-                
-                var helpline = '<p>Got a question? Please contact <a href="mailto:'+ layout.extensionMeta.email +'">'+ layout.extensionMeta.email +'<a></p>'
-                var dim1message ='';
-                var dim2message='';
+
+                var dim1message = 'Required';
+                var dim2message = 'Required';
                 var dim3message = '';
-                var errortemplate = '<h2>Lets create a Vizlib timeline!</h2><div style="width:95%; text-align: left;"><img class="vizlibtimeline_image" style="max-width:250px;max-height:80px"></div>Add up to three dimensions in this order:<p>   1) Event Date <b>Required ' + dim1message + '</b></p><p>  2) Event Name or Identifier <b>Required ' + dim2message + '</b></p><p>  3) Event End Date (Optional)  <b>' + dim3message + '</b></p>' + helpline;
+
+                function displayerror(dim1message, dim2message, dim3message) {
+
+                    var helpline = '<p>Visit <a href="http://www.vizlib.com/timeline">vizlib.com/vizlibtimeline<a> for full documentation. Got a question? Please contact <a href="mailto:' + layout.extensionMeta.email + '">' + layout.extensionMeta.email + '<a></p>';
+
+                    var measurelist = '<h1>Measures</h1><p>Measures are optional. They control settings such as  description, media URL, captions and more for each event. Add a measure and select the <i>Timeline Setting Type</i> in the measure settings.</p>';
+
+
+
+                    var error = '<h2>Lets create a Vizlib Timeline!</h2><div style="width:95%; text-align: left;"><img class="vizlibtimeline_image" style="max-width:250px;max-height:80px"></div><h1>Dimensions</h1>Add up to three dimensions in this order:<p>   1) Event Date <b> ' + dim1message + '</b></p><p>  2) Event Name or Identifier <b> ' + dim2message + '</b></p><p>  3) Event End Date (Optional)  <b>' + dim3message + '</b></p>' + measurelist + helpline;
+
+                    //var error = '<button class="add-button lui-button" qva-activate="showAddDimension($event,d)" q-translation="Visualization.Requirements.AddDimension" tid="add-dimension">Event Date</button><button class="add-button lui-button" qva-activate="showAddDimension($event,d)" q-translation="Visualization.Requirements.AddDimension" tid="add-dimension">Event Name or Identifier</button><button class="add-button lui-button" qva-activate="showAddDimension($event,d)" q-translation="Visualization.Requirements.AddDimension" tid="add-dimension">Add Event Date Dimension</button><h2>Lets create a Vizlib Timeline!</h2><div style="width:95%; text-align: left;"><img class="vizlibtimeline_image" style="max-width:250px;max-height:80px"></div><div class="containerlabel" q-translation="Common.Dimensions">Dimensions</div>Add up to three dimensions in this order:<p>   1) Event Date <b> ' + dim1message + '</b></p><p>  2) Event Name or Identifier <b> ' + dim2message + '</b></p><p>  3) Event End Date (Optional)  <b>' + dim3message + '</b></p>' + helpline;
+
+
+                    $element.html(error);
+                    $('.vizlibtimeline_image').attr('src', '../extensions/' + layout.extensionMeta.template + '/' + layout.extensionMeta.preview)
+                    $('.vizlibtimeline_image').attr('alt', layout.extensionMeta.name)
+
+                }
 
                 if (numberofdimensions == 0) {
 
-                    $element.html(errortemplate);
-                        $('.vizlibtimeline_image').attr('src', '../extensions/' + layout.extensionMeta.template + '/' + layout.extensionMeta.preview)
-                        $('.vizlibtimeline_image').attr('alt', layout.extensionMeta.name)
+                    displayerror(dim1message, dim2message, dim3message);
+
                 } else {
 
 
@@ -50,9 +66,10 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                         var dim1message = '<span style="color: orange;">Please select a valid date field<span>';
                         var dim1valid = false;
                     } else {
-                        var dim1message = '<span style="color: green;">Ok<span>';
+                        var dim1message = '<span style="color: green;"> ✔ Ok<span>';
 
                         var dim1valid = true;
+                        displayerror(dim1message, dim2message, dim3message);
 
 
                     }
@@ -60,7 +77,10 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                     //Check second dimension exists
                     if (numberofdimensions > 1) {
                         var dim2valid = true;
-                        var dim2message = '<span style="color: green;">Ok<span>';
+                        var dim2message = '<span style="color: green;"> ✔ Ok<span>';
+
+                        displayerror(dim1message, dim2message, dim3message);
+
                     }
 
                     //If third dimension exists validate it is a date
@@ -70,11 +90,14 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
 
 
                         if (layout.qHyperCube.qDimensionInfo["2"].qTags.indexOf("$timestamp") == -1) {
-                            var dim3message = '<span style="color: orange;">Please select a valid date field<span>' + helpline;
+                            var dim3message = '<span style="color: orange;">Please select a valid date field<span>';
                             var dim3valid = false;
+                            displayerror(dim1message, dim2message, dim3message);
                         } else {
                             var dim3message = '<span style="color: green;">Ok<span>';
                             var dim3valid = true;
+
+                            displayerror(dim1message, dim2message, dim3message);
 
                         }
                     }
@@ -119,9 +142,9 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
 
 
                     } else {
-                        $element.html(errortemplate);
-                        $('.vizlibtimeline_image').attr('src', '../extensions/' + layout.extensionMeta.template + '/' + layout.extensionMeta.preview)
-                        $('.vizlibtimeline_image').attr('alt', layout.extensionMeta.name)
+
+                        displayerror(dim1message, dim2message, dim3message);
+
                     }
 
                 }
@@ -370,12 +393,38 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                         //qData[i][1].qNum
 
 
-                        layout.storydata.events = eventsarray;
 
                     }
                     var HTMLcontent = '<div id="timeline"></div>';
                     $element.html(HTMLcontent);
 
+                    layout.storydata.events = eventsarray;
+
+                    
+
+                    if (layout.landingmedia == false) {
+                        layout.storydata.title.media = '';
+                    }
+
+/*
+var timelineoptions = {
+default_bg_color: 'green',
+timenav_position: 'top',
+optimal_tick_width: 100,
+timenav_height: 0,
+timenav_height_percentage: 25,
+timenav_mobile_height_percentage: 40,
+timenav_height_min: 1,
+marker_height_min: 30,
+marker_width_min: 100,
+marker_padding: 10,
+start_at_slide: 1,
+duration: 1,
+scale_factor: 2,
+initial_zoom: 2,
+zoom_sequence:  [0.5, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+};
+*/
                     var timeline = new TL.Timeline('timeline', layout.storydata);
 
 

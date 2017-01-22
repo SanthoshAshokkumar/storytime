@@ -18,35 +18,61 @@ define([], function() {
                 label: "Landing Page Info",
                 ref: "LandingPageInfo",
                 items: {
-                    landingpage_url: {
-                        ref: "storydata.title.media.url",
-                        label: "Media URL",
-                        type: "string",
-                        expression: "optional"
-                    },
-                    landingpage_caption: {
-                        ref: "storydata.title.media.caption",
-                        label: "Media Caption",
-                        type: "string",
-                        expression: "optional"
-                    },
-                    landingpage_credit: {
-                        ref: "storydata.title.media.credit",
-                        label: "Media Credits",
-                        type: "string",
-                        expression: "optional"
-                    },
                     landingpage_headline: {
                         ref: "storydata.title.text.headline",
-                        label: "Landing Headline",
+                        label: "Title",
                         type: "string",
                         expression: "optional"
                     },
                     landingpage_text: {
                         ref: "storydata.title.text.text",
-                        label: "Landing Description",
+                        label: "Title Description",
                         type: "string",
                         expression: "optional"
+                    },
+                    landingmedia: {
+                        label: "Use media on landing page",
+                        ref: "landingmedia",
+                        type: "boolean",
+                        component: "switch",
+                        options: [{
+                            value: true,
+                            label: "Yes"
+                        }, {
+                            value: false,
+                            label: "No"
+                        }],
+                        defaultValue: false
+                    },
+                    landingpage_url: {
+                        ref: "storydata.title.media.url",
+                        label: "Media URL",
+                        type: "string",
+                        expression: "optional",
+                        show: function(data) {
+                            console.log(data);
+                            return data.landingmedia;
+                        }
+                    },
+                    landingpage_caption: {
+                        ref: "storydata.title.media.caption",
+                        label: "Media Caption",
+                        type: "string",
+                        expression: "optional",
+                        show: function(data) {
+                            console.log(data);
+                            return data.landingmedia;
+                        }
+                    },
+                    landingpage_credit: {
+                        ref: "storydata.title.media.credit",
+                        label: "Media Credits",
+                        type: "string",
+                        expression: "optional",
+                        show: function(data) {
+                            console.log(data);
+                            return data.landingmedia;
+                        }
                     }
                 }
             }
