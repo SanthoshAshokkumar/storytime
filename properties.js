@@ -43,8 +43,8 @@ define([], function() {
                         expression: "optional"
                     },
                     landingpage_text: {
-                        ref: "storydata.title.text.description",
-                        label: "Landing Text Description",
+                        ref: "storydata.title.text.text",
+                        label: "Landing Description",
                         type: "string",
                         expression: "optional"
                     }
@@ -97,6 +97,7 @@ define([], function() {
         type: "items",
         component: "accordion",
         items: {
+            timeline: timelineSection,
             dimensions: {
                 uses: "dimensions",
                 min: 0,
@@ -113,7 +114,6 @@ define([], function() {
             sorting: {
                 uses: "sorting"
             },
-            timeline: timelineSection,
             settings: appearanceSection,
             addons: {
                 uses: "addons",

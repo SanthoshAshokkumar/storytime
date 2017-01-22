@@ -34,7 +34,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
 
                 if (numberofdimensions == 0) {
 
-                    var error = '<h2>Lets create a Vizlib timeline!</h2><p> </p>Add up to three dimensions in this order:<p>   1) Event Start Date <b>Required</b></p><p>  2) Event Name or Identifier <b>Required</b></p><p>  3) Event End Date (Optional)</p>' + helpline;
+                    var error = '<h2>Lets create a Vizlib timeline!</h2><p> </p>Add up to three dimensions in this order:<p>   1) Event Date <b>Required</b></p><p>  2) Event Name or Identifier <b>Required</b></p><p>  3) Event End Date (Optional)</p>' + helpline;
                     $element.html(error);
 
                 } else {
@@ -116,7 +116,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
 
 
                     } else {
-                        var error = '<h2>Lets create a Vizlib timeline!</h2><p> </p>Add up to three dimensions in this order:<p>   1) Event Start Date <b>Required ' + dim1message + '</b></p><p>  2) Event Name or Identifier <b>Required ' + dim2message + '</b></p><p>  3) Event End Date (Optional)  <b>' + dim3message + '</b></p>' + helpline;
+                        var error = '<h2>Lets create a Vizlib timeline!</h2><p> </p>Add up to three dimensions in this order:<p>   1) Event Date <b>Required ' + dim1message + '</b></p><p>  2) Event Name or Identifier <b>Required ' + dim2message + '</b></p><p>  3) Event End Date (Optional)  <b>' + dim3message + '</b></p>' + helpline;
                         $element.html(error);
                     }
 
@@ -337,7 +337,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                             media: {
                                 caption: media_caption,
                                 credit: media_credit,
-                                thumb: media_thumb,
+                                thumbnail: media_thumb,
                                 url: media_url
                             },
                             start_date: start_date_formatted,
