@@ -2,6 +2,7 @@
 	"name": "Vizlib Timeline",
 	"description": "Display stories on a visual timeline",
 	"type": "visualization",
+	"eMail": "support@vizlib.com",
 	"version": "1.1.0",
 	"icon": "extension",
 	"preview": "vizlibtimeline.png",
