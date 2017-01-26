@@ -9,6 +9,127 @@ define([], function() {
         uses: "settings"
     };
 
+    var timelineSettings = {
+                type: "items",
+                label: "Timeline Appearance",
+                ref: "timelinesettings",
+        items: {
+            timelinedefault: {
+                type: "items",
+                label: "Timeline Defaults",
+                ref: "timelinedefault",
+                items: {
+                    default_bg_color: {
+                        ref: "timelinedefault.default_bg_color",
+                        label: "Default Background Color",
+                        type: "string",
+                        expression: "optional",
+                        defaultValue: "#ffffff"
+                    },
+                    timenav_position: {
+                        type: "string",
+                        component: "dropdown",
+                        label: "Navigation Position",
+                        ref: "timelinedefault.timenav_position",
+                        defaultValue: "bottom",
+                        options: [{
+                            value: "top",
+                            label: "Top"
+                        }, {
+                            value: "bottom",
+                            label: "Bottom"
+                        }]
+                    },
+                    tick_width: {
+                        ref: "timelinedefault.tick_width",
+                        label: "Optimal Tick Width",
+                        type: "number",
+                        expression: "optional",
+                        defaultValue: 100
+                    },
+                    timenavheightmode: {
+                        label: "Set Timenav Height",
+                        ref: "timenavheightmode",
+                        type: "boolean",
+                        component: "switch",
+                        options: [{
+                            value: true,
+                            label: "Use Pixels (px)"
+                        }, {
+                            value: false,
+                            label: "Use Percentage (%)"
+                        }],
+                        defaultValue: false
+                    },
+                    timenav_height: {
+                        ref: "timelinedefault.timenav_height",
+                        label: "Time Nav Height",
+                        type: "string",
+                        expression: "optional",
+                        defaultValue: [25],
+                        show: function(data) {
+                            
+                            return data.timenavheightmode;
+                        }
+                    },
+                    timenav_height_percentage: {
+                        type: "number",
+                        component: "slider",
+                        label: "Time Nav Height %",
+                        ref: "timelinedefault.duration",
+                        min: 0,
+                        max: 1,
+                        step: 0.1,
+                        defaultValue: [0.25],
+                        show: function(data) {
+                            
+                            return !data.timenavheightmode;
+                        }
+                    },
+                    marker_height_min: {
+                        ref: "timelinedefault.marker_height_min",
+                        label: "Event Market Min Height",
+                        type: "number",
+                        expression: "optional",
+                        defaultValue: 50
+                    },
+                    marker_width_min: {
+                        ref: "timelinedefault.marker_width_min",
+                        label: "Event Market Min Width",
+                        type: "number",
+                        expression: "optional",
+                        defaultValue: 10
+                    },
+                    start_at_slide: {
+                        ref: "timelinedefault.start_at_slide",
+                        label: "Starting Event Number",
+                        type: "number",
+                        expression: "optional",
+                        defaultValue: 0
+                    },
+                    initial_zoom: {
+                        type: "number",
+                        component: "slider",
+                        label: "Initial Time Zoom",
+                        ref: "timelinedefault.initial_zoom",
+                        min: 0.5,
+                        max: 89,
+                        step: 0.5,
+                        defaultValue: [2]
+                    }
+                }
+            }
+        }
+    };
+
+/*
+
+
+
+
+
+*/
+
     var timelineSection = {
         label: "Timeline Landing Page",
         type: "items",
@@ -50,7 +171,7 @@ define([], function() {
                         type: "string",
                         expression: "optional",
                         show: function(data) {
-                            console.log(data);
+                        
                             return data.landingmedia;
                         }
                     },
@@ -60,7 +181,7 @@ define([], function() {
                         type: "string",
                         expression: "optional",
                         show: function(data) {
-                            console.log(data);
+                            
                             return data.landingmedia;
                         }
                     },
@@ -70,7 +191,7 @@ define([], function() {
                         type: "string",
                         expression: "optional",
                         show: function(data) {
-                            console.log(data);
+                            
                             return data.landingmedia;
                         }
                     }
@@ -107,7 +228,7 @@ define([], function() {
             label: "Media URL"
         }, {
             value: "grouping",
-            label: "grouping"
+            label: "Grouping"
         }]
     };
 
@@ -116,6 +237,7 @@ define([], function() {
         label: function(data) {
             return "About " + data.extensionMeta.name
         },
+        type: "items",
         items: {
             aboutsettings: {
                 ref: "aboutsettings",
@@ -134,6 +256,8 @@ define([], function() {
             }
         }
     }
+
+
 
     // *****************************************************************************
     // Main properties panel definition
@@ -155,9 +279,22 @@ define([], function() {
                 min: 0,
                 max: 9,
                 items: {
-                    propertyType: propertyType
+                    propertyType: propertyType,
+                    measuredescription: {
+                        ref: "measuresetting",
+                        type: "string",
+                        component: {
+                            template: "<div class='settingdescription'>asd</div>",
+                            controller: ["$scope", "$element", function(c, e) {
+                                $('.settingdescription').html(c.data.qDef.settingtype);
+                                //console.log(c.data.qDef.settingtype);
+
+                            }]
+                        }
+                    }
                 }
             },
+            timelinesettings: timelineSettings,
             sorting: {
                 uses: "sorting"
             },

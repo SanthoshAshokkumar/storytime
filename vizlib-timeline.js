@@ -23,9 +23,9 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
             definition: props,
             paint: function($element, layout) {
 
-
+                
                 //Number of dimensions
-                console.log(layout);
+                //console.log(layout);
 
                 var qData = layout.qHyperCube.qDataPages[0].qMatrix;
 
@@ -37,9 +37,9 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
 
                 function displayerror(dim1message, dim2message, dim3message) {
 
-                    var helpline = '<p>Visit <a href="http://www.vizlib.com/timeline">vizlib.com/vizlibtimeline<a> for full documentation. Got a question? Please contact <a href="mailto:' + layout.extensionMeta.email + '">' + layout.extensionMeta.email + '<a></p>';
+                    var helpline = '<br /><h1>Support</h1><p>Visit <a href="http://www.vizlib.com/timeline">vizlib.com/vizlibstorytimeline<a> for documentation. Got a question? Please contact <a href="mailto:' + layout.extensionMeta.email + '">' + layout.extensionMeta.email + '<a></p>';
 
-                    var measurelist = '<h1>Measures</h1><p>Measures are optional. They control settings such as  description, media URL, captions and more for each event. Add a measure and select the <i>Timeline Setting Type</i> in the measure settings.</p>';
+                    var measurelist = '<br /><h1>Measures</h1><p>Measures are optional. They control settings like description, media URL, captions and more for each event. Add a measure and select the <i><b>Timeline Setting Type</b></i> in the measure settings.</p>';
 
 
 
@@ -69,6 +69,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                         var dim1message = '<span style="color: green;"> ✔ Ok<span>';
 
                         var dim1valid = true;
+
                         displayerror(dim1message, dim2message, dim3message);
 
 
@@ -112,7 +113,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                             settingpositions.push(layout.qHyperCube.qMeasureInfo[i].settingtype);
                         }
 
-                        console.log('setting positions', settingpositions);
+                        //console.log('setting positions', settingpositions);
 
                         //Do check for duplicate settings to throw error
                         //Sort array
@@ -126,11 +127,12 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                             }
                         }
 
-                        console.log('DUPLICATES', duplicatesettings);
+                        //console.log('DUPLICATES', duplicatesettings);
 
                         if (duplicatesettings.length != 0) {
-                            var error = '<span style="color: orange;"><b>You have defined ' + duplicatesettings + ' twice in your measures! Please remove the duplicates.</b></span>' + helpline;
-                            $element.html(error);
+                            var duplicateerror = '<span style="color: orange;"><b>You have defined ' + duplicatesettings + ' twice in your measures!</p><p>Please check your measures and remove the duplicate <i>Timeline Setting Type</i> values.</p></b></span>';
+                            $element.html(duplicateerror);
+                            //console.log('DUPLICATE ERROR');
                         } else {
 
                             //$element.html('Generate Story');
@@ -213,7 +215,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                         }
 
 
-                        console.log('media_caption', media_caption);
+                        //console.log('media_caption', media_caption);
 
 
 
@@ -232,7 +234,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                             }
                         }
 
-                        console.log('media_credit', media_credit);
+                        //console.log('media_credit', media_credit);
 
 
 
@@ -254,7 +256,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                             }
                         }
 
-                        console.log('media_thumb', media_thumb);
+                        //console.log('media_thumb', media_thumb);
 
 
 
@@ -275,7 +277,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                             }
                         }
 
-                        console.log('grouping', grouping);
+                        //console.log('grouping', grouping);
 
 
 
@@ -295,7 +297,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                             }
                         }
 
-                        console.log('media_url', media_url);
+                        //console.log('media_url', media_url);
 
 
 
@@ -316,7 +318,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                             }
                         }
 
-                        console.log('background_opacity', background_opacity);
+                        //console.log('background_opacity', background_opacity);
 
 
 
@@ -336,7 +338,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                             }
                         }
 
-                        console.log('background_img_color', background_img_color);
+                        //console.log('background_img_color', background_img_color);
 
 
 
@@ -357,7 +359,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                             }
                         }
 
-                        console.log('description', description);
+                        //console.log('description', description);
 
 
 
@@ -384,7 +386,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
 
                         eventsarray.push(story);
 
-                        console.log(eventsarray);
+                        //console.log(eventsarray);
                         //var storystartdate = console.log(moment(qData[i][0].qText).format('DD/MM/YYYY hh:nn:ss'));
 
                         //console.log(storystartdate);
@@ -395,42 +397,44 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
 
 
                     }
+
+
+
                     var HTMLcontent = '<div id="timeline"></div>';
                     $element.html(HTMLcontent);
 
                     layout.storydata.events = eventsarray;
 
-                    
+
 
                     if (layout.landingmedia == false) {
                         layout.storydata.title.media = '';
                     }
 
-/*
-var timelineoptions = {
-default_bg_color: 'green',
-timenav_position: 'top',
-optimal_tick_width: 100,
-timenav_height: 0,
-timenav_height_percentage: 25,
-timenav_mobile_height_percentage: 40,
-timenav_height_min: 1,
-marker_height_min: 30,
-marker_width_min: 100,
-marker_padding: 10,
-start_at_slide: 1,
-duration: 1,
-scale_factor: 2,
-initial_zoom: 2,
-zoom_sequence:  [0.5, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
-};
-*/
-                    var timeline = new TL.Timeline('timeline', layout.storydata);
+
+                    
+                        var timelineoptions = {
+                            default_bg_color: layout.timelinedefault.default_bg_color,
+                            timenav_position: layout.timelinedefault.timenav_position,
+                            optimal_tick_width: layout.timelinedefault.tick_width,
+                            timenav_height: layout.timelinedefault.timenav_height,
+                            timenav_height_percentage: layout.timelinedefault.timenav_height_percentage,
+                            marker_height_min: layout.timelinedefault.marker_height_min,
+                            marker_width_min: layout.timelinedefault.marker_width_min,
+                            start_at_slide: layout.timelinedefault.start_at_slide,
+                            duration: layout.timelinedefault.duration,
+                            initial_zoom: layout.timelinedefault.initial_zoom
+                        };
+
+                    console.log('DEFAULT SETTINGS',timelineoptions);
+                    
+
+                    //var timeline = new TL.Timeline('timeline', layout.storydata);
 
 
                 }
 
-
+                
 
             }
 
