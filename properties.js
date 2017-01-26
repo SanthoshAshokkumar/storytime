@@ -63,10 +63,10 @@ define([], function() {
                     },
                     timenav_height: {
                         ref: "timelinedefault.timenav_height",
-                        label: "Time Nav Height",
-                        type: "string",
+                        label: "Time Nav Height (px)",
+                        type: "number",
                         expression: "optional",
-                        defaultValue: [25],
+                        defaultValue: 150,
                         show: function(data) {
                             
                             return data.timenavheightmode;
@@ -75,8 +75,8 @@ define([], function() {
                     timenav_height_percentage: {
                         type: "number",
                         component: "slider",
-                        label: "Time Nav Height %",
-                        ref: "timelinedefault.duration",
+                        label: "Time Nav Height (%)",
+                        ref: "timelinedefault.timenav_height_percentage",
                         min: 0,
                         max: 1,
                         step: 0.1,
@@ -85,6 +85,16 @@ define([], function() {
                             
                             return !data.timenavheightmode;
                         }
+                    },
+                    duration: {
+                        type: "number",
+                        component: "slider",
+                        label: "Slide Transition Speed",
+                        ref: "timelinedefault.duration",
+                        min: 1,
+                        max: 3000,
+                        step: 1,
+                        defaultValue: [1000]
                     },
                     marker_height_min: {
                         ref: "timelinedefault.marker_height_min",
@@ -143,13 +153,15 @@ define([], function() {
                         ref: "storydata.title.text.headline",
                         label: "Title",
                         type: "string",
-                        expression: "optional"
+                        expression: "optional",
+                        defaultValue: "Vizlib Timeline Landing Page"
                     },
                     landingpage_text: {
                         ref: "storydata.title.text.text",
                         label: "Title Description",
                         type: "string",
-                        expression: "optional"
+                        expression: "optional",
+                        defaultValue: "Add some measures to control story content look and feel!"                        
                     },
                     landingmedia: {
                         label: "Use media on landing page",

@@ -23,7 +23,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
             definition: props,
             paint: function($element, layout) {
 
-                
+
                 //Number of dimensions
                 //console.log(layout);
 
@@ -411,30 +411,42 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                         layout.storydata.title.media = '';
                     }
 
+                    if (layout.timenavheightmode==false) {
+                        var timenav_height_percentage = layout.timelinedefault.timenav_height_percentage[0];
 
-                    
-                        var timelineoptions = {
-                            default_bg_color: layout.timelinedefault.default_bg_color,
-                            timenav_position: layout.timelinedefault.timenav_position,
-                            optimal_tick_width: layout.timelinedefault.tick_width,
-                            timenav_height: layout.timelinedefault.timenav_height,
-                            timenav_height_percentage: layout.timelinedefault.timenav_height_percentage,
-                            marker_height_min: layout.timelinedefault.marker_height_min,
-                            marker_width_min: layout.timelinedefault.marker_width_min,
-                            start_at_slide: layout.timelinedefault.start_at_slide,
-                            duration: layout.timelinedefault.duration,
-                            initial_zoom: layout.timelinedefault.initial_zoom
-                        };
+                    } else {
+                        var timenav_height_percentage = 0;
+                    }
 
-                    console.log('DEFAULT SETTINGS',timelineoptions);
-                    
+                    if (layout.timenavheightmode==true) {
+                        var timenav_height = layout.timelinedefault.timenav_height;
 
-                    //var timeline = new TL.Timeline('timeline', layout.storydata);
+                    } else {
+                        var timenav_height = 0;
+                    }
+
+                    var timelineoptions = {
+                        default_bg_color: layout.timelinedefault.default_bg_color,
+                        timenav_position: layout.timelinedefault.timenav_position,
+                        optimal_tick_width: layout.timelinedefault.tick_width,
+                        timenav_height: timenav_height,
+                        timenav_height_percentage: timenav_height_percentage,
+                        marker_height_min: layout.timelinedefault.marker_height_min,
+                        marker_width_min: layout.timelinedefault.marker_width_min,
+                        start_at_slide: layout.timelinedefault.start_at_slide,
+                        duration: layout.timelinedefault.duration[0],
+                        initial_zoom: layout.timelinedefault.initial_zoom[0]
+                    };
+
+                    console.log('DEFAULT SETTINGS', timelineoptions);
+
+
+                    var timeline = new TL.Timeline('timeline', layout.storydata);
 
 
                 }
 
-                
+
 
             }
 
