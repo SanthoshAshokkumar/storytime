@@ -298,7 +298,7 @@ define([], function() {
                         component: {
                             template: "<div class='settingdescription'>asd</div>",
                             controller: ["$scope", "$element", function(c, e) {
-                                $('.settingdescription').html(c.data.qDef.settingtype);
+                                $('.settingdescription').html("<i>Optional Settings:</i> <ul><li><b>Description</b> - This is the text description that will show up under the Event Name in the timeline.</li><li><b>Media URL</b> - This is the URL to the media such as an image</li><li><b>Media Caption</b> - A quote that appears under the media.</b></li><li><b>Media credit</b> - A small text that appears next to the media.</b></li><li><b>Event thumbnail</b> - A mini image that appears on the event icon in the timeline.</b></li><li><b>Grouping</b> - A grouping value that will position events in the same horizontal row.</li><li><b>Event background</b> - This can be either a hex color value, e.g. #333333 or a URL to an image.</li></ul>");
                                 //console.log(c.data.qDef.settingtype);
 
                             }]
