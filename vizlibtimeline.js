@@ -1,4 +1,4 @@
-define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/moment", "css!./lib/css/vizlib-timeline.css"],
+define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/moment", "css!./lib/css/vizlibtimeline.css"],
     function(props, qlik, $, utils, timelinejs, moment) {
         'use strict';
 
@@ -413,6 +413,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
 
                     if (layout.timenavheightmode==false) {
                         var timenav_height_percentage = layout.timelinedefault.timenav_height_percentage[0];
+                        var timenav_height = 0;
 
                     } else {
                         var timenav_height_percentage = 0;
@@ -420,7 +421,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
 
                     if (layout.timenavheightmode==true) {
                         var timenav_height = layout.timelinedefault.timenav_height;
-
+                        var timenav_height_percentage = 0;
                     } else {
                         var timenav_height = 0;
                     }
@@ -431,11 +432,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                         optimal_tick_width: layout.timelinedefault.tick_width,
                         timenav_height: timenav_height,
                         timenav_height_percentage: timenav_height_percentage,
-                        marker_height_min: layout.timelinedefault.marker_height_min,
-                        marker_width_min: layout.timelinedefault.marker_width_min,
-                        start_at_slide: layout.timelinedefault.start_at_slide,
-                        duration: layout.timelinedefault.duration[0],
-                        initial_zoom: layout.timelinedefault.initial_zoom[0]
+                        start_at_slide: layout.timelinedefault.start_at_slide
                     };
 
                     //console.log('DEFAULT SETTINGS', timelineoptions);

@@ -86,46 +86,12 @@ define([], function() {
                             return !data.timenavheightmode;
                         }
                     },
-                    duration: {
-                        type: "number",
-                        component: "slider",
-                        label: "Slide Transition Speed",
-                        ref: "timelinedefault.duration",
-                        min: 1,
-                        max: 3000,
-                        step: 1,
-                        defaultValue: [1000]
-                    },
-                    marker_height_min: {
-                        ref: "timelinedefault.marker_height_min",
-                        label: "Event Market Min Height",
-                        type: "number",
-                        expression: "optional",
-                        defaultValue: 50
-                    },
-                    marker_width_min: {
-                        ref: "timelinedefault.marker_width_min",
-                        label: "Event Market Min Width",
-                        type: "number",
-                        expression: "optional",
-                        defaultValue: 10
-                    },
                     start_at_slide: {
                         ref: "timelinedefault.start_at_slide",
                         label: "Starting Event Number",
                         type: "number",
                         expression: "optional",
                         defaultValue: 0
-                    },
-                    initial_zoom: {
-                        type: "number",
-                        component: "slider",
-                        label: "Initial Time Zoom",
-                        ref: "timelinedefault.initial_zoom",
-                        min: 0.5,
-                        max: 89,
-                        step: 0.5,
-                        defaultValue: [2]
                     }
                 }
             }
@@ -259,7 +225,7 @@ define([], function() {
                         '<i><div id="aboutsection_version" style="width:95%; text-align: right; font-size:10px; margin-right:10px; color: #667dbc"></div></i>' +
                         '<i><div id="aboutsection_email" style="width:95%; text-align: center; font-size:13px; margin-right:10px; color: #667dbc"></div></i>',
                     controller: ["$scope", "$element", function(c, e) {
-                        $('#aboutsection_image').attr('src', '../extensions/' + c.data.extensionMeta.template + '/' + c.data.extensionMeta.preview)
+                        $('#aboutsection_image').attr('src', '/extensions/' + c.data.extensionMeta.template + '/' + c.data.extensionMeta.preview)
                         $('#aboutsection_image').attr('alt', c.data.extensionMeta.name)
                         $('#aboutsection_email').html(c.data.extensionMeta.email)
                         $('#aboutsection_version').html(c.data.extensionMeta.version)
@@ -307,9 +273,6 @@ define([], function() {
                 }
             },
             timelinesettings: timelineSettings,
-            sorting: {
-                uses: "sorting"
-            },
             settings: appearanceSection,
             addons: {
                 uses: "addons",
