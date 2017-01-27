@@ -5,7 +5,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
         //console.log(qlik);
         var app = qlik.currApp(this);
         //Function to enable console logging in debug mode.
-
+        
         return {
             // new object properties
             initialProperties: {
@@ -23,6 +23,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
             definition: props,
             paint: function($element, layout) {
 
+                
 
                 //Number of dimensions
                 //console.log(layout);
@@ -399,9 +400,10 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                     }
 
 
-
-                    var HTMLcontent = '<div id="timeline"></div>';
+                    
+                    var HTMLcontent = '<div id="timeline_'+ layout.qInfo.qId +'"></div>';
                     $element.html(HTMLcontent);
+                    
 
                     layout.storydata.events = eventsarray;
 
@@ -412,18 +414,12 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                     }
 
                     if (layout.timenavheightmode==false) {
-                        var timenav_height_percentage = layout.timelinedefault.timenav_height_percentage[0];
-                        var timenav_height = 0;
+                        var timenav_height_percentage = layout.timelinedefault.timenav_height_percentage;
+                        var timenav_height = '';
 
                     } else {
-                        var timenav_height_percentage = 0;
-                    }
-
-                    if (layout.timenavheightmode==true) {
                         var timenav_height = layout.timelinedefault.timenav_height;
-                        var timenav_height_percentage = 0;
-                    } else {
-                        var timenav_height = 0;
+                        var timenav_height_percentage = '';
                     }
 
                     var timelineoptions = {
@@ -438,7 +434,7 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                     //console.log('DEFAULT SETTINGS', timelineoptions);
 
 
-                    var timeline = new TL.Timeline('timeline', layout.storydata, timelineoptions);
+                    var timeline = new TL.Timeline('timeline_'+ layout.qInfo.qId, layout.storydata, timelineoptions);
 
 
                 }

@@ -9,174 +9,166 @@ define([], function() {
         uses: "settings"
     };
 
-    var timelineSettings = {
-                type: "items",
-                label: "Timeline Appearance",
-                ref: "timelinesettings",
+    var timelinedefault = {
+        default_bg_color: {
+            ref: "timelinedefault.default_bg_color",
+            label: "Default Background Color",
+            type: "string",
+            expression: "optional",
+            defaultValue: "#ffffff"
+        },
+        timenav_position: {
+            type: "string",
+            component: "dropdown",
+            label: "Navigation Position",
+            ref: "timelinedefault.timenav_position",
+            defaultValue: "bottom",
+            options: [{
+                value: "top",
+                label: "Top"
+            }, {
+                value: "bottom",
+                label: "Bottom"
+            }]
+        },
+        tick_width: {
+            ref: "timelinedefault.tick_width",
+            label: "Optimal Tick Width",
+            type: "number",
+            expression: "optional",
+            defaultValue: 100
+        },
+        timenavheightmode: {
+            label: "Set Timenav Height",
+            ref: "timenavheightmode",
+            type: "boolean",
+            component: "switch",
+            options: [{
+                value: true,
+                label: "Use Pixels (px)"
+            }, {
+                value: false,
+                label: "Use Percentage (%)"
+            }],
+            defaultValue: false
+        },
+        timenav_height: {
+            ref: "timelinedefault.timenav_height",
+            label: "Time Nav Height (px)",
+            type: "number",
+            expression: "optional",
+            defaultValue: 150,
+            show: function(data) {
+
+                return data.timenavheightmode;
+            }
+        },
+        timenav_height_percentage: {
+            type: "number",
+            component: "slider",
+            label: "Time Nav Height (%)",
+            ref: "timelinedefault.timenav_height_percentage",
+            min: 0,
+            max: 100,
+            step: 1,
+            defaultValue: [25],
+            show: function(data) {
+
+                return !data.timenavheightmode;
+            }
+        }
+    };
+
+
+
+    var timelinelanding = {
+        landingpage_headline: {
+            ref: "storydata.title.text.headline",
+            label: "Title",
+            type: "string",
+            expression: "optional",
+            defaultValue: "Vizlib Timeline Landing Page"
+        },
+        landingpage_text: {
+            ref: "storydata.title.text.text",
+            label: "Title Description",
+            type: "string",
+            expression: "optional",
+            defaultValue: "Add some measures to control story content look and feel!"
+        },
+        landingmedia: {
+            label: "Use media on landing page",
+            ref: "landingmedia",
+            type: "boolean",
+            component: "switch",
+            options: [{
+                value: true,
+                label: "Yes"
+            }, {
+                value: false,
+                label: "No"
+            }],
+            defaultValue: false
+        },
+        landingpage_url: {
+            ref: "storydata.title.media.url",
+            label: "Media URL",
+            type: "string",
+            expression: "optional",
+            show: function(data) {
+
+                return data.landingmedia;
+            }
+        },
+        landingpage_caption: {
+            ref: "storydata.title.media.caption",
+            label: "Media Caption",
+            type: "string",
+            expression: "optional",
+            show: function(data) {
+
+                return data.landingmedia;
+            }
+        },
+        landingpage_credit: {
+            ref: "storydata.title.media.credit",
+            label: "Media Credits",
+            type: "string",
+            expression: "optional",
+            show: function(data) {
+
+                return data.landingmedia;
+            }
+        },
+        start_at_slide: {
+            ref: "timelinedefault.start_at_slide",
+            label: "Starting Event Number",
+            type: "number",
+            expression: "optional",
+            defaultValue: 0
+        }
+    };
+
+
+// Define a custom section
+var timelinesettings = {
+        component: "expandable-items",
+        label: "Timeline Settings",
         items: {
+            timelinelanding: {
+                type: "items",
+                label: "Landing Page",
+                items: timelinelanding
+            },
             timelinedefault: {
                 type: "items",
-                label: "Timeline Defaults",
-                ref: "timelinedefault",
-                items: {
-                    default_bg_color: {
-                        ref: "timelinedefault.default_bg_color",
-                        label: "Default Background Color",
-                        type: "string",
-                        expression: "optional",
-                        defaultValue: "#ffffff"
-                    },
-                    timenav_position: {
-                        type: "string",
-                        component: "dropdown",
-                        label: "Navigation Position",
-                        ref: "timelinedefault.timenav_position",
-                        defaultValue: "bottom",
-                        options: [{
-                            value: "top",
-                            label: "Top"
-                        }, {
-                            value: "bottom",
-                            label: "Bottom"
-                        }]
-                    },
-                    tick_width: {
-                        ref: "timelinedefault.tick_width",
-                        label: "Optimal Tick Width",
-                        type: "number",
-                        expression: "optional",
-                        defaultValue: 100
-                    },
-                    timenavheightmode: {
-                        label: "Set Timenav Height",
-                        ref: "timenavheightmode",
-                        type: "boolean",
-                        component: "switch",
-                        options: [{
-                            value: true,
-                            label: "Use Pixels (px)"
-                        }, {
-                            value: false,
-                            label: "Use Percentage (%)"
-                        }],
-                        defaultValue: false
-                    },
-                    timenav_height: {
-                        ref: "timelinedefault.timenav_height",
-                        label: "Time Nav Height (px)",
-                        type: "number",
-                        expression: "optional",
-                        defaultValue: 150,
-                        show: function(data) {
-                            
-                            return data.timenavheightmode;
-                        }
-                    },
-                    timenav_height_percentage: {
-                        type: "number",
-                        component: "slider",
-                        label: "Time Nav Height (%)",
-                        ref: "timelinedefault.timenav_height_percentage",
-                        min: 0,
-                        max: 1,
-                        step: 0.1,
-                        defaultValue: [0.25],
-                        show: function(data) {
-                            
-                            return !data.timenavheightmode;
-                        }
-                    },
-                    start_at_slide: {
-                        ref: "timelinedefault.start_at_slide",
-                        label: "Starting Event Number",
-                        type: "number",
-                        expression: "optional",
-                        defaultValue: 0
-                    }
-                }
+                label: "Timeline Appearance",
+                items: timelinedefault
             }
         }
-    };
-
-/*
+    }
 
 
-
-
-
-*/
-
-    var timelineSection = {
-        label: "Timeline Landing Page",
-        type: "items",
-        items: {
-            landingpage: {
-                type: "items",
-                label: "Landing Page Info",
-                ref: "LandingPageInfo",
-                items: {
-                    landingpage_headline: {
-                        ref: "storydata.title.text.headline",
-                        label: "Title",
-                        type: "string",
-                        expression: "optional",
-                        defaultValue: "Vizlib Timeline Landing Page"
-                    },
-                    landingpage_text: {
-                        ref: "storydata.title.text.text",
-                        label: "Title Description",
-                        type: "string",
-                        expression: "optional",
-                        defaultValue: "Add some measures to control story content look and feel!"                        
-                    },
-                    landingmedia: {
-                        label: "Use media on landing page",
-                        ref: "landingmedia",
-                        type: "boolean",
-                        component: "switch",
-                        options: [{
-                            value: true,
-                            label: "Yes"
-                        }, {
-                            value: false,
-                            label: "No"
-                        }],
-                        defaultValue: false
-                    },
-                    landingpage_url: {
-                        ref: "storydata.title.media.url",
-                        label: "Media URL",
-                        type: "string",
-                        expression: "optional",
-                        show: function(data) {
-                        
-                            return data.landingmedia;
-                        }
-                    },
-                    landingpage_caption: {
-                        ref: "storydata.title.media.caption",
-                        label: "Media Caption",
-                        type: "string",
-                        expression: "optional",
-                        show: function(data) {
-                            
-                            return data.landingmedia;
-                        }
-                    },
-                    landingpage_credit: {
-                        ref: "storydata.title.media.credit",
-                        label: "Media Credits",
-                        type: "string",
-                        expression: "optional",
-                        show: function(data) {
-                            
-                            return data.landingmedia;
-                        }
-                    }
-                }
-            }
-        }
-    };
 
     var propertyType = {
         type: "string",
@@ -210,22 +202,21 @@ define([], function() {
         }]
     };
 
+
     /********* About *********/
     var sectionAbout = {
-        label: function(data) {
-            return "About " + data.extensionMeta.name
-        },
+        label: "About Vizlib Advanced Text Object",
         type: "items",
         items: {
-            aboutsettings: {
-                ref: "aboutsettings",
+            iconPicker: {
+                ref: "props.iconpicker",
                 type: "string",
                 component: {
-                    template: '<div style="width:95%; text-align: left;"><img id="aboutsection_image" style="max-width:250px;max-height:80px"></div>' +
-                        '<i><div id="aboutsection_version" style="width:95%; text-align: right; font-size:10px; margin-right:10px; color: #667dbc"></div></i>' +
-                        '<i><div id="aboutsection_email" style="width:95%; text-align: center; font-size:13px; margin-right:10px; color: #667dbc"></div></i>',
+                    template: '<div style="width:95%; text-align: left;"><img id="aboutsection_image" style="max-width:250px"></div>' +
+                        '<i><div id="aboutsection_version" style="width:95%; text-align: right; font-size:10px; margin-right:10px; color: #667dbc "></div></i>' +
+                        '<i><div id="aboutsection_email" style="width:95%; text-align: center; font-size:13px; margin-right:10px; color: #667dbc "></div></i>',
                     controller: ["$scope", "$element", function(c, e) {
-                        $('#aboutsection_image').attr('src', '/extensions/' + c.data.extensionMeta.template + '/' + c.data.extensionMeta.preview)
+                        $('#aboutsection_image').attr('src', '../extensions/' + c.data.extensionMeta.template + '/' + c.data.extensionMeta.preview)
                         $('#aboutsection_image').attr('alt', c.data.extensionMeta.name)
                         $('#aboutsection_email').html(c.data.extensionMeta.email)
                         $('#aboutsection_version').html(c.data.extensionMeta.version)
@@ -235,18 +226,14 @@ define([], function() {
         }
     }
 
-
-
     // *****************************************************************************
     // Main properties panel definition
     // Only what is defined here is returned from properties.js
     // *****************************************************************************
     return {
-
         type: "items",
         component: "accordion",
         items: {
-            timeline: timelineSection,
             dimensions: {
                 uses: "dimensions",
                 min: 0,
@@ -272,7 +259,7 @@ define([], function() {
                     }
                 }
             },
-            timelinesettings: timelineSettings,
+            timelinesettings: timelinesettings,
             settings: appearanceSection,
             addons: {
                 uses: "addons",
