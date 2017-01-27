@@ -438,10 +438,10 @@ define(["./properties", "qlik", "jquery", "./utils", "./js/timeline", "./js/mome
                         initial_zoom: layout.timelinedefault.initial_zoom[0]
                     };
 
-                    console.log('DEFAULT SETTINGS', timelineoptions);
+                    //console.log('DEFAULT SETTINGS', timelineoptions);
 
 
-                    var timeline = new TL.Timeline('timeline', layout.storydata);
+                    var timeline = new TL.Timeline('timeline', layout.storydata, timelineoptions);
 
 
                 }
